@@ -39,5 +39,5 @@ Please note that this project is intended for educational and personal use. Alwa
 Feel free to explore, modify, and use this project as a starting point for your own password management solutions!
 
 
-
-![Demonstration on how the project works](https://github.com/21salyut12/password_manager/blob/main/demo_password_manager.jpg)
+## Demonstration on how the project works
+![](https://github.com/21salyut12/password_manager/blob/main/demo_password_manager.jpg)
