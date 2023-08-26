@@ -1,67 +1,20 @@
-import random, array
-
 # Define what the password is for
 info = input("What is this password for?\n")
-
-# Password length
-MAX_LEN = 16
-
-# Numbers, letters, and characters for the password
-NUMBERS = ['0', '1', '2', '3', '4',
-           '5', '6', '7', '8', '9']
-
-LOW_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g',
-               'h', 'i', 'j', 'k', 'l', 'm', 'n',
-               'o', 'p', 'q', 'r', 's', 't', 'u',
-               'v', 'x', 'y', 'w', 'z']
-
-UPPER_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G',
-                 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-                 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-                 'V', 'X', 'Y', 'W', 'Z']
-
-SPECIAL_CHARS = ['!', '@', '#', '$', '%', '^', '&',
-                 '*', '-', '_', '+', '=', '{', '}',
-                 '[', ']', '|', '/', '<', '>', '?',
-                 ':', ';', '~', '`', '\\']
-
-# Combined array that holds all of the above arrays
-COMBINED = NUMBERS + LOW_LETTERS + UPPER_LETTERS + SPECIAL_CHARS
-
-# Generate a random number, letter, and special character
-numbers = random.choice(NUMBERS)
-lower_letters = random.choice(LOW_LETTERS)
-upper_letters = random.choice(UPPER_LETTERS)
-special_chars = random.choice(SPECIAL_CHARS)
-
-# Initial password string
-password = numbers + lower_letters + upper_letters + special_chars
 
 # Encrypt password
 def encryption(password, position):
     encrypted_pass = password[position:] + password[:position]
     return encrypted_pass
 
-for x in range(MAX_LEN - 4):
-    password = password + random.choice(COMBINED)
+# Get user password and encrypt it
+def urs_pass_encrypt():
+    encode_pass = input("Please input the password you want to encrypt:\n")
+    encrypt_pass = encryption(encode_pass, 10)
+    print("Encrypted password: {}\n".format(encrypt_pass))
+    print("You can find the encrypted version in the specified text file!")
 
-# Empty string for the final form of the password
-generated_password = ""
-for x in password:
-    # Add to generated_password character with number x
-    generated_password = generated_password + x
+    # Open and write to the desired file the password
+    with open(r"C:\Users\Radu\Desktop\Stuff\Notes\text.txt", "a") as file: # Replace with a specific text file path
+        file.write("\n{} - {}".format(encrypt_pass, info))
 
-# Encrypt the password
-encrypted_pass = encryption(generated_password, 10)
-
-# Print password and randomized, encrypted versions
-print("Generated password: {}\n".format(generated_password))
-print("Encrypted password: {}\n".format(encrypted_pass))
-
-# Print the user reason alongside with the final password
-print("{} - {}".format(encrypted_pass, info))
-print("You can find the encrypted version in the specified text file!")
-
-# Open and write to the desired file the reason and password
-with open(r"C:\Users\Radu\Desktop\Stuff\Notes\text.txt", "a") as file: # Replace with a specific text file path
-    file.write("\n{} - {}".format(encrypted_pass, info))
+urs_pass_encrypt()
